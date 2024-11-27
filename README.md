@@ -68,4 +68,4 @@ This RBAC (Role-Based Access Control) system is designed for secure and efficien
     ```
 
 
-You need to add you servers details in .env files for database connection.
+You need to add your server details in .env files for database connection.
