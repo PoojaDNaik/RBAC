@@ -152,7 +152,6 @@ async function updateUserRole(userId) {
                         id : userId,
                         email: updatedEmail,
                         password: updatedPassword,
-                        // role: updatedRole
                     })
                 });
 
