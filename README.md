@@ -4,7 +4,7 @@ This RBAC (Role-Based Access Control) system is designed for secure and efficien
 
 ---
 
-## 🚀 Key Features:
+## Key Features:
 
 ### User Registration & Login:
 - Users can register with their email address and create an account.
@@ -35,25 +35,34 @@ This RBAC (Role-Based Access Control) system is designed for secure and efficien
 
 ---
 
-## 📜 Steps to Use:
+### Steps to Install
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/PoojaDNaik/RBAC.git
-   cd RBAC
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/yourusername/checklist-application.git
+    cd checklist-application
+    ```
 
-Install Dependencies: Use the following command to install required packages:
+2. **Set up a virtual environment** (optional but recommended):
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    ```
 
-bash
-Copy code
-pip install -r requirements.txt
-Initialize the Database: Run the initialization script to set up the database:
+3. **Install dependencies**:
+    Ensure you are in the virtual environment, then install the required packages from `requirements.txt`:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-bash
-Copy code
-python init_db.py
-Start the Server: Launch the FastAPI server:
+4. **Run the database initialization script**:
+    If you're using a different server or environment, you will need to initialize the database before starting the application. Run the following command to set up the necessary tables:
+    ```bash
+    python initDB.py
+    ```
 
-bash
-Copy code
-uvicorn main:app --reload
+5. **Run the application**:
+    Use **uvicorn** to start the FastAPI server:
+    ```bash
+    uvicorn main:app --reload
+    ```
