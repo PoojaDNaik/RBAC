@@ -29,7 +29,7 @@ This RBAC (Role-Based Access Control) system is designed for secure and efficien
 
 ---
 
-## 🛠️ Prerequisites:
+## Prerequisites:
 - **Python 3.11.6**
 - **MySQL**
 
