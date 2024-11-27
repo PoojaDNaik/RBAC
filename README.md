@@ -66,3 +66,6 @@ This RBAC (Role-Based Access Control) system is designed for secure and efficien
     ```bash
     uvicorn main:app --reload
     ```
+
+
+You need to add you servers details in .env files for database connection.
