@@ -11,7 +11,6 @@ load_dotenv()
 from pydantic import BaseModel
 from crud import checkForValidLoginAdmin, checkForValidLoginUser, createUser, getUserDetails, getAdminIndividualDetail, getUserIndividualDetail, updateUser, addAdmin, removeUser, addUser, addAdmin, deleteUser, updatePassword
 
-# templates = Jinja2Templates(directory="templates")
 templates = Jinja2Templates(directory=os.path.join(os.getcwd(), "templates"))
 
 app = FastAPI()
