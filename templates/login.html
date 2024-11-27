@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <link rel="icon" href="../images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/style.css">
+
+</head>
+<body>
+    <nav>
+        <img src="../images/logo.png" width="50px" height="50px" alt="image">
+        <h1>RBAC</h1>
+        <span>
+            <a href="/">Home</a>
+            <a href="/register">register</a>
+        </span>
+    </nav>
+    <div id="login-div">
+        <h1>login</h1>
+        <div id="user-detail">
+            <input type="email" id="email" placeholder="Enter email" required>
+            <div>
+                <input style="position: relative;" type="password" id="password" placeholder="Enter password" required>
+                <span id="toggle-eye" style="position: absolute; top: 38%;" class="eye-icon" onclick="togglePassword()">
+                    🔑 
+                </span>
+            </div>
+            
+            <button id="button">submit</button>
+            <a href="/forgotPassword">forgot password</a>
+        </div>
+    </div>
+
+    <script>
+
+        function togglePassword() {
+            const passwordField = document.getElementById("password");
+            const eyeIcon = document.getElementById("toggle-eye");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                eyeIcon.textContent = "👁️"; 
+            } else {
+                passwordField.type = "password";
+                eyeIcon.textContent = "🔑"; 
+            }
+        }
+
+
+        const loginButton = document.getElementById("button");
+        loginButton.onclick = async (e) => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            if (!email || !password) {
+                alert("Email and password are required");
+                return;
+            }
+
+            
+            const response = await fetch("/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            });
+
+            const res = await response.json();
+            console.log(res);
+
+            if (!res.success) {
+                alert("Invalid email or password");
+            } else {
+                localStorage.setItem("email", email); 
+               if (res.user_type === "admin") {
+                    window.location.pathname = '/admin';  
+                } else if (res.user_type === "user") {
+                    window.location.pathname = '/user';  
+                }
+            }
+        };
+
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin page</title>
+    <link rel="icon" href="../images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/style.css">
+
+
+</head>
+<body>
+    <nav>
+        <img src="../images/logo.png" width="50px" height="50px" alt="image">
+        <h1>RBAC</h1>
+        <span>
+            <a href="/">logout</a>
+        </span>
+    </nav>
+    <div id='permission'>
+        <h4>PERMISSIONS:</h4>
+        <ul>
+            <li>Admin can view his information</li>
+            <li>Admin can view and manage users.</li>
+            <li>Admin have options to add, edit, or delete users.</li>
+            <li>Admin can assign roles to users(e.g.,admin/user) and managing their status (e.g., Active/Inactive).</li>
+        </ul>
+    </div>
+    <div id="details-for-admin">
+        <div id="admin-div">
+            <h3>your details </h3>
+            <div id="admin-details"></div>
+        </div>
+        <div id="user-div">
+            <h3>all users details</h3>
+            <div id="user-details"></div>
+        </div>
+        <div>
+            <button id="addUSer-button" onclick="addUser()">Add User</button>
+            <div id='form-container'></div>
+        </div>
+    </div>
+    <script src="../static/adminRights.js"></script>
+
+</body>
+</html>
+

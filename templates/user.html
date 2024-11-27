@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <link rel="icon" href="../images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/style.css">
+
+
+</head>
+<body>
+    <nav>
+        <img src="../images/logo.png" width="50px" height="50px" alt="image">
+        <h1>RBAC</h1>
+        <span>
+            <a href="/">logout</a>
+        </span>
+    </nav>
+    <div id="permission">
+        <h4>PERMISSIONS:</h4>
+        <ul>
+            <li>User can only view his information if his status is active.</li>
+        </ul>
+    </div>
+    <div>
+        <div id="user">
+            <h3>your data</h3>
+            <div id="user"></div>
+        </div>        
+    </div>
+
+    <script>
+
+        async function fetchUserDetails() {
+            try {
+                const em = localStorage.getItem('email');
+                console.log(em)
+
+                const response = await fetch("/getDetail-forUser", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email: em }),
+                });
+
+                const data = await response.json();
+                if (!data.success) {
+                    let userHtml = `You are in inactive status`
+                }
+                
+                const userDetailsContainer = document.getElementById("user");
+
+                if (data.user && data.user.length > 0) {
+                    let userHtml = `
+                        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+                            <thead>
+                                <tr style="background-color: #f2f2f2;">
+                                    <th style="padding: 8px; text-align: left;">ID</th>
+                                    <th style="padding: 8px; text-align: left;">Email</th>
+                                    <th style="padding: 8px; text-align: left;">Password</th>
+                                    <th style="padding: 8px; text-align: left;">Role</th>
+                                    <th style="padding: 8px; text-align: left;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 8px;">${data.user[0][0]}</td> 
+                                    <td style="padding: 8px;">${data.user[0][1]}</td> 
+                                    <td style="padding: 8px;">${data.user[0][2]}</td> 
+                                    <td style="padding: 8px;">${data.user[0][3]}</td>
+                                    <td style="padding: 8px;">${data.user[0][4]}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    `;
+                    userDetailsContainer.innerHTML = userHtml;
+                } else {
+                    userDetailsContainer.innerHTML = "User is in Inactive status.";
+                }
+            } catch (error) {
+                console.error("Error fetching user details:", error);
+            }
+        }
+        fetchUserDetails();
+
+    </script>
+</body>
+</html>
+

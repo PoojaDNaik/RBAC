@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register page</title>
+    <link rel="icon" href="../images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <nav>
+        <img src="../images/logo.png" width="50px" height="50px" alt="image">
+        <h1>RBAC</h1>
+        <span>
+            <a href="/">Home</a>
+            <a href="/login">login</a>
+        </span>
+    </nav>
+    <div id="register-div">
+        <h1>Register</h1>
+
+        <div id="user-detail">
+            <input type="email" id="email" placeholder="Enter email" required>
+            <input type="password" id="password" placeholder="Enter password" required>
+            
+            <button id="button">submit</button>
+        </div>
+        
+    </div>
+
+    <script>
+        const loginButton = document.getElementById("button");
+        loginButton.onclick = async (e) => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (!email || !password) {
+                alert("Email and password are required");
+                return;
+            }
+
+            const response = await fetch("/register",{
+                method:"POST",
+                headers:{
+                    "content-type":"application/json"
+                },
+                body:JSON.stringify({
+                    email,
+                    password
+                })
+            });
+            if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const res = await response.json();
+            console.log(res)
+            if(!res.success){
+                alert("Invalid Constrant")
+            }else{
+                localStorage.setItem("id",res.id);
+                window.location.pathname = '/login'
+            }
+        }
+    </script>
+</body>
+</html>
