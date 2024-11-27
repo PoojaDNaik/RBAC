@@ -103,5 +103,5 @@ h1 {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    font-size: 20px; /* Adjust size as needed */
+    font-size: 20px; 
 }
