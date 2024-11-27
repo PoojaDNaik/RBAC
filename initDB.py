@@ -41,8 +41,6 @@ def f():
     )
     """)
 
-    # runQuery("ALTER TABLE USER ADD COLUMN status VARCHAR(255) DEFAULT 'active'")
-
     runQuery(
     """
         INSERT INTO ADMIN (email, password) 
@@ -52,9 +50,6 @@ def f():
             email = VALUES(email), 
             password = VALUES(password)
     """)
-
-    # print(runQuery("SELECT * FROM USER"))
-
 
 f()
 
